@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Survey Form</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
+    <style>
+      body {
+        background-color: rgb(62, 170, 212);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 style="color: white; text-align: center;">Customer Survey Form</h1>
+      <form id="surveyForm" style="background-color: white;">
+        <label for="name">Name</label><br />
+        <input type="text" id="name" name="name" /><br />
+        <label for="email">Email</label><br />
+        <input type="text" id="email" name="email" /><br />
+        <p>
+          Is this first time you are using our products & service?
+        </p>
+        <label> <input type="radio" name="yes" value="yes" /> Yes </label>
+        <label> <input type="radio" name="no" value="no" /> No </label>
+        <p>Would you suggestion to your friends and colleague?</p>
+        <label> <input type="radio" name="yes" value="yes" /> Yes </label>
+        <label> <input type="radio" name="no" value="no" /> No </label>
+        <p>How satisfied are you with our company overall?</p>
+        <label>
+          <input type="radio" name="satisfied" value="satisfied" /> Satisfied
+        </label>
+        <label>
+          <input type="radio" name="undecided" value="undecided" /> Undecided
+        </label>
+        <label>
+          <input type="radio" name="unsatisfied" value="unsatisfied" />
+          Unsatisfied
+        </label>
+        <p>Do you have suggestion to improve our service?</p>
+        <textarea
+          id="feedback"
+          name="feedback"
+          rows="4"
+          cols="50"
+          placeholder="Type your suggestions here..."
+          required
+        ></textarea
+        ><br />
+        <button
+          type="button"
+          id="submitBtn"
+          style="background-color: rgb(59, 59, 230); color: white;"
+        >
+          Submit
+        </button>
+        <button type="reset" id="resetBtn">Reset</button>
+      </form>
+    </div>
+    <br />
+    <footer>
+      &copy; 2018 Customer Survey Form. All Rights Reserved | Designed by
+      <a href="https://www.w3layouts.com/">W3Layouts</a>
+    </footer>
+    <script>
+      document
+        .getElementById("submitBtn")
+        .addEventListener("click", function () {
+          displayPopup();
+        });
+
+      document
+        .getElementById("resetBtn")
+        .addEventListener("click", function () {
+          document.getElementById("surveyForm").reset();
+        });
+
+      function displayPopup() {
+        const form = document.getElementById("surveyForm");
+        const popup = document.getElementById("popup");
+        const popupContent = document.getElementById("popup-content");
+
+        const formData = new FormData(form);
+        let popupHTML = "<h2>Survey Form Data</h2><ul>";
+
+        formData.forEach((value, key) => {
+          popupHTML += `<li><strong>${key}:</strong> ${value}</li>`;
+        });
+
+        popupHTML += "</ul>";
+
+        popupContent.innerHTML = popupHTML;
+        popup.style.display = "block";
+        form.reset();
+      }
+
+      document.getElementById("popup").addEventListener("click", function (e) {
+        if (e.target === this) {
+          this.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
